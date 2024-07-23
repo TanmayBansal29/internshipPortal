@@ -13,7 +13,7 @@ app.use(cors({
     origin:["http://localhost:3001"],
     credentials:true
 }))
-mongoose.connect(`${process.env.MONGO_URI}/internships`).then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("connected to database")
 })
 app.use("/auth",router)

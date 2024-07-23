@@ -5,13 +5,15 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const router = require("./routes/userr")
 const cookieParser = require("cookie-parser")
+require("dotenv").config();
+
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(cors({
     origin:["http://localhost:3001"],
     credentials:true
 }))
-mongoose.connect("mongodb://localhost:27017/internships").then(()=>{
+mongoose.connect(`${process.env.MONGO_URI}/internships`).then(()=>{
     console.log("connected to database")
 })
 app.use("/auth",router)
